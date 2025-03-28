@@ -3,3 +3,8 @@ money-pay-svgrepo-com.svg was downloaded from: https://www.svgrepo.com/svg/21515
 
 this project is based entirely on "Django-HTMX-Finance-App" from "bugbytes-io"
 link to their github: https://github.com/bugbytes-io
+
+
+user01
+user01@admin.com
+123
