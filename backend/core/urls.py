@@ -26,6 +26,7 @@ TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path("", include('tracker.routes')),
 ]
 
