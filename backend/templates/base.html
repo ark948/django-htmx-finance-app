@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance {% block title %}{% endblock title %}</title>
+    {% block extra_head %}
+    {% endblock extra_head %}
+</head>
+<body>
+    [BASE]
+    {% block content %}
+    {% endblock content %}
+    [BASE]
+
+    {% block extra_script %}
+    {% endblock extra_script %}
+</body>
+</html>
