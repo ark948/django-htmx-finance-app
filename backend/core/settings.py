@@ -134,11 +134,11 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-def show_request(request):
+def show_request(request): # unused:
     return True
 
 DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK": show_request,
+    "SHOW_TOOLBAR_CALLBACK": lambda _request: DEBUG,
 }
 
 if DEBUG:

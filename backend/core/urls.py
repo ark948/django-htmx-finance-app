@@ -14,13 +14,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import sys
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 
 import debug_toolbar
 
+# activate or deactivate debug_toolbar, when testing
+TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('__debug__/', include(debug_toolbar.urls)),
     path("", include('tracker.routes')),
 ]
+
+
+if settings.DEBUG or TESTING:
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]
