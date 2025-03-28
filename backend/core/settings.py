@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    "django_htmx",
 
     "tracker",
 ]
@@ -62,6 +63,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     "allauth.account.middleware.AccountMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",   
 ]
 
 ROOT_URLCONF = 'core.urls'
