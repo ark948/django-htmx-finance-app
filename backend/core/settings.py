@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     "django_extensions",
     "debug_toolbar",
+    'widget_tweaks',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
