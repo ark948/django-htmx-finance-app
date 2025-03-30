@@ -5,6 +5,9 @@ static assets downloaded:
 money-pay-svgrepo-com.svg was downloaded from: https://www.svgrepo.com/svg/215153/money-pay
 
 
+using tailwind v3
+
+
 superuser:
 user01
 user01@admin.com
