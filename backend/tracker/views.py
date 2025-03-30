@@ -17,12 +17,12 @@ def index(request: HttpRequest) -> HttpResponse:
 @login_required
 def transactions_list(request):
     transaction_filter = TransactionFilter(
-        request=request.GET,
+        request.GET,
         queryset=Transaction.objects.filter(user=request.user).select_related('category')
     )
     context = {'filter': transaction_filter}
+
     if request.htmx:
-        response = render(request, "tracker/partials/transactions-container.html", context)
-        return response
-    response = render(request, "tracker/transactions-list.html", context)
-    return response
+        return render(request, 'tracker/partials/transactions-container.html', context)
+
+    return render(request, 'tracker/transactions-list.html', context)
