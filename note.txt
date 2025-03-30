@@ -6,9 +6,16 @@ money-pay-svgrepo-com.svg was downloaded from: https://www.svgrepo.com/svg/21515
 
 
 using tailwind v3
+and daisyui
+and htmx
 
 
 superuser:
 user01
 user01@admin.com
 123
+
+
+
+- to enter enhanced shell (provided by django_extensions):
+> python manage.py shell_plus
