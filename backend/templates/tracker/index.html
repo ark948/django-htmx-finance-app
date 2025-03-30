@@ -14,12 +14,12 @@
             <p class="text-xl text-white">
                 Welcome, {{ user.username }}
             </p>
-            <p>
-                <a href="{% url 'tracker:transactions-list' %}">
-                    View transactions list ->
-                </a>
-            </p>
         </div>
+        <p class="text-l text-white">
+            <a class="text-white" href="{% url 'tracker:transactions-list' %}">
+                View transactions list ->
+            </a>
+        </p>
     {% else %}
         <p class="text-white">
             Anonymous.

@@ -16,6 +16,9 @@ def index(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def transactions_list(request):
+    # django-filter FilterSet will provide a form automatically
+    # in template we'll render that form, using widget-tweaks we'll introduce custom class
+    # to benefit from tailwindcss and daisyui
     transaction_filter = TransactionFilter(
         request.GET,
         queryset=Transaction.objects.filter(user=request.user).select_related('category')
