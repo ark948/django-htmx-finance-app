@@ -21,11 +21,11 @@ def transactions_list(request):
     # to benefit from tailwindcss and daisyui
     transaction_filter = TransactionFilter(
         request.GET,
+        # without specifying "select_related('category')", a separate sql query is made for every transaction object
+        # which is terrible performance (n+1 problem)
         queryset=Transaction.objects.filter(user=request.user).select_related('category')
     )
     context = {'filter': transaction_filter}
-
     if request.htmx:
         return render(request, 'tracker/partials/transactions-container.html', context)
-
     return render(request, 'tracker/transactions-list.html', context)
