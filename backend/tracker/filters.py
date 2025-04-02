@@ -1,10 +1,11 @@
 import django_filters
 from django import forms
 
-from .models import Transaction
+from .models import Transaction, Category
 
 
 class TransactionFilter(django_filters.FilterSet):
+
     transaction_type = django_filters.ChoiceFilter(
         choices=Transaction.TRANSACTION_TYPE_CHOICES,
         field_name='type',
@@ -26,6 +27,11 @@ class TransactionFilter(django_filters.FilterSet):
         widget=forms.DateInput(attrs={'type':"date"})
     )
 
+    category = django_filters.ModelMultipleChoiceFilter(
+        queryset = Category.objects.all(),
+        widget = forms.CheckboxSelectMultiple()
+    )
+
     class Meta:
         model = Transaction
-        fields = ( 'transaction_type', 'start_date', 'end_date', )
+        fields = ( 'transaction_type', 'start_date', 'end_date', 'category', )
