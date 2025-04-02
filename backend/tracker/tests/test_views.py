@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from django.test.client import Client
 from django.urls import reverse
 
+from tracker.models import Category
 
 
 @pytest.mark.django_db
@@ -70,3 +71,18 @@ def test_transaction_start_end_date_filter(user_transactions, client: Client):
 
 
 # write a test for both start date and end date (exercise)
+
+
+@pytest.mark.django_db
+def test_category_filter(user_transactions, client):
+    user = user_transactions[0].user
+    client.force_login(user)
+
+    category_pks = Category.objects.all()[:2].values_list('pk', flat=True)
+    GET_params = {'category': category_pks}
+    resposne = client.get(reverse('tracker:transactions-list'), GET_params)
+
+    qs = resposne.context['filter'].qs
+
+    for transaction in qs:
+        assert transaction.category.pk in category_pks
