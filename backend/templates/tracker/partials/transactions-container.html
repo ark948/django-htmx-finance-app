@@ -6,6 +6,34 @@
 
     <!-- 3/4 cols for the table of transactions -->
     <div class="col-span-3">
+        <div class="col-span-3">
+            <div class="my-4">
+                <h1 class="mt-4 mb-4 prose prose-2xl text-white">
+                    Totals
+                </h1>
+
+                <table class="table">
+                    <thead class="text-xs text-white uppercase">
+                        <tr>
+                            <th>Total Income</th>
+                            <th>Total Expenses</th>
+                            <th>Net Income</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>${{ total_income }}</td>
+                            <td>${{ total_expenses }}</td>
+                            <td>${{ net_income }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h1 class="mt-8 mb-4 prose prose-2xl text-white">
+            Transactions
+        </h1>
+
         {% if filter.qs %}
 
         <table class="table">

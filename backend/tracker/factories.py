@@ -3,6 +3,7 @@ from datetime import datetime
 
 from .models import Category, Transaction, User
 
+
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = 'tracker.User'  # Equivalent to ``model = myapp.models.User``
@@ -12,12 +13,14 @@ class UserFactory(factory.django.DjangoModelFactory):
     last_name = factory.Faker('last_name')
     username = factory.Sequence(lambda n: 'user%d' % n)
 
+
 class CategoryFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Category
         django_get_or_create = ('name', )
 
     name = factory.Iterator( ['Bills', 'Housing', 'Salary', 'Food', 'Social'] )
+
 
 class TransactionFactory(factory.django.DjangoModelFactory):
     class Meta:
