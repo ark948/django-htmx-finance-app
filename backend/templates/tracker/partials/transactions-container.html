@@ -1,5 +1,5 @@
 {% load widget_tweaks %}
-
+{% load humanize %}
 
 <!-- Define Grid container div -->
 <div class="flex flex-col-reverse md:grid md:grid-cols-4 md:gap-4" id="transaction-container">
@@ -22,9 +22,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>${{ total_income }}</td>
-                            <td>${{ total_expenses }}</td>
-                            <td>${{ net_income }}</td>
+                            <td>${{ total_income|floatformat:2|intcomma }}</td>
+                            <td>${{ total_expenses|floatformat:2|intcomma }}</td>
+                            <td>${{ net_income|floatformat:2|intcomma }}</td>
                         </tr>
                     </tbody>
                 </table>
