@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "django.contrib.humanize",
 
     "django_extensions",
-    "debug_toolbar",
     'widget_tweaks',
     'allauth',
     'allauth.account',
@@ -55,6 +54,10 @@ INSTALLED_APPS = [
 # SITE_ID = 1
 
 
+import sys
+TESTING = "test" in sys.argv
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -63,10 +66,19 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     "allauth.account.middleware.AccountMiddleware",
     "django_htmx.middleware.HtmxMiddleware",   
 ]
+
+
+if not TESTING:
+    INSTALLED_APPS += [
+        "debug_toolbar"
+    ]
+    MIDDLEWARE += [
+        "debug_toolbar.middleware.DebugToolbarMiddleware"
+    ]
+
 
 ROOT_URLCONF = 'core.urls'
 

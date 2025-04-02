@@ -22,7 +22,7 @@ from django.urls import path, include
 import debug_toolbar
 
 # activate or deactivate debug_toolbar, when testing
-TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
+# TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,7 +31,7 @@ urlpatterns = [
 ]
 
 
-if settings.DEBUG or TESTING:
+if not settings.TESTING:
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
     ]
