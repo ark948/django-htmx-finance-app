@@ -22,7 +22,7 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
     
 </head>
-<body>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     {% include 'tracker/partials/navbar.html' %}
 
     <div class="max-w-screen-lg mx-auto p-4">
