@@ -14,6 +14,10 @@
     <div class="mb-2 form-control">
         {{ form.amount|add_label_class:"label text-white" }}
         {% render_field form.amount class="input text-black" %}
+
+        {% for error in form.amount.errors %}
+            <p class="text-red-400 mt-1">{{ error }}</p>
+        {% endfor %}
     </div>
 
     <div class="mb-2 form-control">
