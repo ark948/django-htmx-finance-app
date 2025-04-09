@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth.decorators import login_required
+from django_htmx.http import retarget
 
 
 from .models import Transaction
@@ -50,7 +51,8 @@ def create_transaction(request: HttpRequest):
             return render(request, 'tracker/partials/transaction-success.html', context)
         else:
             context = { 'form': form } # will have errors
-            return render(request, 'tracker/partials/create-transaction.html', context)
+            response = render(request, 'tracker/partials/create-transaction.html', context)
+            return retarget(response, '#transaction-block')
         
     context = { 'form': TransactionForm() }
     return render(request, 'tracker/partials/create-transaction.html', context)
