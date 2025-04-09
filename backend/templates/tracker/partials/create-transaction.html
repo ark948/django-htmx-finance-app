@@ -34,7 +34,7 @@
         Add
     </button>
 
-    <button class="btn btn-success" hx-get="{% url 'tracker:transactions-list' %}" hx-target="#transaction-block" hx-push-url="true">
+    <button class="btn btn-error" hx-get="{% url 'tracker:transactions-list' %}" hx-target="#transaction-block" hx-push-url="/transactions">
         View transactions (Cancel)
     </button>
 
