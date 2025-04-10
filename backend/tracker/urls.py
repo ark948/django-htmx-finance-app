@@ -8,5 +8,6 @@ urlpatterns = [
     path('transactions/<int:pk>/update/', views.update_transaction, name='update-transaction'),
     path('transactions/create', views.create_transaction, name='create-transaction'),
     path("transactions/", views.transactions_list, name='transactions-list'),
+    path('get-transactions/', views.get_transactions, name='get-transactions'),
     path("", views.index, name='index'),
 ]

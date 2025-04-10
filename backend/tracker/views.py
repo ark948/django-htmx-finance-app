@@ -98,3 +98,14 @@ def delete_transaction(request: HttpRequest, pk: int):
     return render(request, "tracker/partials/transaction-success.html", context)
 
 
+
+@login_required
+def get_transactions(request: HttpRequest):
+    page = request.GET.get('page', 1) # ?page=2
+    transaction_filter = TransactionFilter(
+        request.GET,
+        queryset=Transaction.objects.filter(user=request.user).select_related('category')
+    )
+    paginator = Paginator(transaction_filter.qs, settings.PAGE_SIZE)
+    context = { 'transactions': paginator.page(page) }
+    return render( request, 'tracker/partials/transactions-container.html#transaction_list', context )

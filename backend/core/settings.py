@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     "django_htmx",
     'django_filters',
+    'template_partials',
 
     "tracker",
 ]
@@ -183,4 +184,4 @@ AUTHENTICATION_BACKENDS = [
 SOCIALACCOUNT_PROVIDERS = {}
 LOGIN_REDIRECT_URL = 'tracker:index'
 
-PAGE_SIZE = 5
+PAGE_SIZE = 10
