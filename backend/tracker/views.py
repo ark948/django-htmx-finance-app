@@ -3,6 +3,8 @@ from django.views.decorators.http import require_http_methods
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth.decorators import login_required
 from django_htmx.http import retarget
+from django.core.paginator import Paginator
+from django.conf import settings
 
 
 from .models import Transaction
@@ -27,9 +29,14 @@ def transactions_list(request):
         # which is terrible performance (n+1 problem)
         queryset=Transaction.objects.filter(user=request.user).select_related('category')
     )
+
+    paginator = Paginator(transaction_filter.qs, settings.PAGE_SIZE)
+    transaction_page = paginator.page(1) # first page by default is page 1
+
     total_income = transaction_filter.qs.get_total_income()
     total_expenses = transaction_filter.qs.get_total_expenses()
     context = {
+            'transactions': transaction_page,
             'filter': transaction_filter,
             'total_income': total_income,
             'total_expenses': total_expenses,
