@@ -23,3 +23,10 @@ user01@admin.com
 
 
 update transaction process breakdown:
+    1. a GET request to update-transaction url is sent, along with transaction pk (from template), it will use the pk to get the item instance from database
+    2. a partial containg a form and that specific transaction item is returned, form is pre-populated with transaction data
+    3. upon submitting this form, a POST request is sent to the same url (update-transaction) along with new data and pk of that transaction
+    4. same view will check, if request type is POST, it will receive a form with updated data
+    5. if form is valid, view will update the transaction item using the same instance (without creating new instance, this is important)
+    6. if update was successful, a new partial with just a message will be returned (successful update message)
+    7. if not, the update transaction form partial will be returned, this time along with form errors
