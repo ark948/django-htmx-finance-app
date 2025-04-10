@@ -10,6 +10,7 @@ django-debug-toolbar==5.1.0
 django-extensions==3.2.3
 django-filter==25.1
 django-htmx==1.23.0
+django-template-partials==24.4
 django-widget-tweaks==1.5.0
 factory_boy==3.3.3
 Faker==37.1.0
