@@ -19,3 +19,7 @@ user01@admin.com
 
 - to enter enhanced shell (provided by django_extensions):
 > python manage.py shell_plus
+
+
+
+update transaction process breakdown:
