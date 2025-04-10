@@ -109,3 +109,16 @@ def get_transactions(request: HttpRequest):
     paginator = Paginator(transaction_filter.qs, settings.PAGE_SIZE)
     context = { 'transactions': paginator.page(page) }
     return render( request, 'tracker/partials/transactions-container.html#transaction_list', context )
+
+
+@login_required
+def get_transactions_no_scroll(request: HttpRequest):
+    transaction_filter = TransactionFilter( 
+        request.GET,
+        queryset=Transaction.objects.filter(user=request.user).select_related('category')
+    )
+    paginator = Paginator(transaction_filter.qs, 5)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+    context = { 'page_obj': page_obj }
+    return render( request, 'tracker/partials/transactions-container-no-scroll.html', context )

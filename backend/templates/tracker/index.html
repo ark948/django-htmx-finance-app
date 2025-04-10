@@ -19,6 +19,10 @@
             <a class="text-white" href="{% url 'tracker:transactions-list' %}">
                 View transactions list ->
             </a>
+            <br>
+            <a href="{% url 'tracker:no-scroll' %}" class="text-whtie">
+                View transactions list (manual pagination) ->
+            </a>
         </p>
     {% else %}
         <p class="text-white">

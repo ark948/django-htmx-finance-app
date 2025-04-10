@@ -33,3 +33,5 @@ update transaction process breakdown:
 
 
 pagination + infinite scroll process breakdown:
+    new extension used for this feature: django-template-partials
+    1. first, the queryset is paginated using the default paginator object provided by django

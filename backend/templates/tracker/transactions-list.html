@@ -15,5 +15,7 @@
             Transactions List
         </h1>
         {% include 'tracker/partials/transactions-container.html' %}
+        {% block custom_list %}
+        {% endblock custom_list %}
     </div>
 {% endblock content %}
