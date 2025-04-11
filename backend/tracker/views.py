@@ -168,3 +168,9 @@ def transactions_charts(request: HttpRequest):
     if request.htmx:
         return render(request, "tracker/partials/charts-container.html", context)
     return render(request, "tracker/charts.html", context)
+
+
+
+@login_required
+def export(request: HttpRequest):
+    pass

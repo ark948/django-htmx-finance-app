@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "django_htmx",
     'django_filters',
     'template_partials',
+    'import_export',
 
     "tracker",
 ]
