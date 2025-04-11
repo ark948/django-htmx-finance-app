@@ -16,6 +16,20 @@
         
         {% if user.is_authenticated %}
             <li>
+                <a href="{% url 'tracker:transactions-list' %}" 
+                    class="block py-2 pl-3 pr-4 text-white rounded md:p-0" 
+                    aria-current="page">
+                        My Transactions
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'tracker:transactions-charts' %}" 
+                    class="block py-2 pl-3 pr-4 text-white rounded md:p-0" 
+                    aria-current="page">
+                        My Charts
+                </a>
+            </li>
+            <li>
                 <a href="{% url 'account_logout' %}" 
                     class="block py-2 pl-3 pr-4 text-white rounded md:p-0" 
                     aria-current="page">
