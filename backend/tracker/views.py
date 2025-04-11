@@ -10,7 +10,7 @@ from django.conf import settings
 from .models import Transaction
 from .filters import TransactionFilter
 from .forms import TransactionForm
-from .charting import plot_income_expenses_bar_chart
+from .charting import plot_income_expenses_bar_chart, plot_category_pie_chart
 
 # Create your views here.
 
@@ -152,9 +152,18 @@ def transactions_charts(request: HttpRequest):
         queryset=Transaction.objects.filter(user=request.user).select_related('category')
     )
     income_expense_bar = plot_income_expenses_bar_chart(transaction_filter.qs)
+
+    category_income_pie = plot_category_pie_chart(
+            transaction_filter.qs.filter(type='income')
+        )
+    category_expense_pie = plot_category_pie_chart(
+            transaction_filter.qs.filter(type='expense')
+        )
     context = {
         'filter': transaction_filter,
-        'income_expense_barchart': income_expense_bar.to_html()
+        'income_expense_barchart': income_expense_bar.to_html(),
+        'category_income_pie': category_income_pie.to_html(),
+        'category_expense_pie': category_expense_pie.to_html()
     }
     if request.htmx:
         return render(request, "tracker/partials/charts-container.html", context)

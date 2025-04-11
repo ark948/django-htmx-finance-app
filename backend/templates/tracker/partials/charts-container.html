@@ -7,6 +7,11 @@
     <!-- 3/4 cols for the table of transactions -->
     <div class="col-span-3">
         {{ income_expense_barchart|safe }}
+
+        <div class="grid grid-cols-2">
+            {{ category_income_pie|safe }}
+            {{ category_expense_pie|safe }}
+        </div>
     </div>
 
     <!-- 1/4 cols for the filter form -->
@@ -14,6 +19,7 @@
         <form hx-get="{% url 'tracker:transactions-charts' %}"
             hx-target="#charts-container"
             hx-swap="outerHTML"
+            hx-indicator="#spinner"
             id="filterform">
             
             <div class="mb-2 form-control">
@@ -39,10 +45,6 @@
                 Filter
             </button>        
         </form>
+        <span id="spinner" class="loading loading-spinner loading-lg htmx-indicator mt-2"></span>
     </div>
 </div>
-
-
-<span id="spinner" class="loading loading-spinner loading-lg htmx-indicator">
-
-</span>
