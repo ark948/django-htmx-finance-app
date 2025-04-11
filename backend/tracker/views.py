@@ -101,6 +101,8 @@ def delete_transaction(request: HttpRequest, pk: int):
 
 @login_required
 def get_transactions(request: HttpRequest):
+    # import time
+    # time.sleep(2) # this is just to test the loading indicator
     page = request.GET.get('page', 1) # ?page=2
     transaction_filter = TransactionFilter(
         request.GET,
