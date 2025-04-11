@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load partials %}
 {% load widget_tweaks %}
 {% load humanize %}
 
@@ -63,6 +63,7 @@
             </thead>
 
             <tbody>
+                {% partialdef test-partial %}
                 {% for transaction in page_obj %}
                     <tr>
                         <td>{{ transaction.date }}</td>
@@ -90,8 +91,10 @@
                         </td>
                     </tr>
                 {% endfor %}
+                {% endpartialdef %}
             </tbody>
         </table>
+
         <div class="pagination">
             <span class="step-links">
                 {% if page_obj.has_previous %}
@@ -104,11 +107,12 @@
                 </span>
         
                 {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a hx-get="{% url 'tracker:no-scroll-partial' %}?page={{ page_obj.next_page_number }}">next</a>
                     <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
                 {% endif %}
             </span>
         </div>
+
 
         {% else %}
 

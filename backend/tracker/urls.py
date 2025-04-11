@@ -4,6 +4,7 @@ from . import views
 
 app_name = 'tracker'
 urlpatterns = [
+    path('transactions-no-scroll-partial/', views.get_transactions_no_scroll_partial, name='no-scroll-partial'),
     path('transactions-no-scroll/', views.get_transactions_no_scroll, name='no-scroll'),
     path('transactions/<int:pk>/delete/', views.delete_transaction, name='delete-transaction'),
     path('transactions/<int:pk>/update/', views.update_transaction, name='update-transaction'),
