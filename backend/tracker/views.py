@@ -47,6 +47,7 @@ def transactions_list(request):
     return render(request, 'tracker/transactions-list.html', context)
 
 
+
 @login_required
 def create_transaction(request: HttpRequest):
     if request.method == "POST":
@@ -64,6 +65,7 @@ def create_transaction(request: HttpRequest):
         
     context = { 'form': TransactionForm() }
     return render(request, 'tracker/partials/create-transaction.html', context)
+
 
 
 @login_required
@@ -87,6 +89,7 @@ def update_transaction(request: HttpRequest, pk: int):
         'transaction': transaction
     }
     return render(request, 'tracker/partials/update-transaction.html', context=context)
+
 
 
 @login_required
@@ -113,6 +116,7 @@ def get_transactions(request: HttpRequest):
     return render( request, 'tracker/partials/transactions-container.html#transaction_list', context )
 
 
+
 @login_required
 def get_transactions_no_scroll(request: HttpRequest):
     transaction_filter = TransactionFilter( 
@@ -137,3 +141,10 @@ def get_transactions_no_scroll_partial(request: HttpRequest):
     page_number = request.GET.get('page', 1)
     context = { 'page_obj' : paginator.get_page(page_number) }
     return render( request, 'tracker/partials/transactions-container-no-scroll.html#test-partial', context )
+
+
+
+@login_required
+def transactions_charts(request: HttpRequest):
+    context = {}
+    return render(request, "tracker/charts.html", context)
