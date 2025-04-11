@@ -11,6 +11,7 @@ from .models import Transaction
 from .filters import TransactionFilter
 from .forms import TransactionForm
 from .charting import plot_income_expenses_bar_chart, plot_category_pie_chart
+from .resources import TransactionResource
 
 # Create your views here.
 
@@ -173,4 +174,14 @@ def transactions_charts(request: HttpRequest):
 
 @login_required
 def export(request: HttpRequest):
-    pass
+    if request.htmx:
+        return HttpResponse( headers={'HX-Redirect': request.get_full_path()} )
+    transaction_filter = TransactionFilter(
+        request.GET,
+        queryset=Transaction.objects.filter(user=request.user).select_related('category')
+    )
+
+    data = TransactionResource().export(transaction_filter.qs)
+    response = HttpResponse(data.csv)
+    response['Content-Disposition'] = 'attachment; filename="transactions.csv"'
+    return response
