@@ -156,4 +156,6 @@ def transactions_charts(request: HttpRequest):
         'filter': transaction_filter,
         'income_expense_barchart': income_expense_bar.to_html()
     }
+    if request.htmx:
+        return render(request, "tracker/partials/charts-container.html", context)
     return render(request, "tracker/charts.html", context)
