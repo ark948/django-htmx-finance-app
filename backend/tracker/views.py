@@ -30,7 +30,7 @@ def transactions_list(request):
         request.GET,
         # without specifying "select_related('category')", a separate sql query is made for every transaction object
         # which is terrible performance (n+1 problem)
-        queryset=Transaction.objects.filter(user=request.user).select_related('category')
+        queryset=Transaction.objects.filter(user=request.user).select_related('category').order_by('-date')
     )
 
     paginator = Paginator(transaction_filter.qs, settings.PAGE_SIZE)
@@ -112,7 +112,7 @@ def get_transactions(request: HttpRequest):
     page = request.GET.get('page', 1) # ?page=2
     transaction_filter = TransactionFilter(
         request.GET,
-        queryset=Transaction.objects.filter(user=request.user).select_related('category')
+        queryset=Transaction.objects.filter(user=request.user).select_related('category').order_by('-date')
     )
     paginator = Paginator(transaction_filter.qs, settings.PAGE_SIZE)
     context = { 'transactions': paginator.page(page) }
