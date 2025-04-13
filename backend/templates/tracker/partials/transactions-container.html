@@ -31,12 +31,18 @@
                 </table>
             </div>
         </div>
-
         <div class="flex justify-between items-center mt-4 mb-6">
             <h1 class="mt-8 mb-4 prose prose-2xl text-white">
                 Transactions
             </h1>
             <div class="flex items-center">
+                <button
+                hx-get="{% url 'tracker:new-item' %}"
+                hx-target="#htmx_modal"
+                hx-trigger="click"
+                hx-on:click="daisy_modal.showModal()">
+                New
+                </button>
                 <a hx-get="{% url 'tracker:create-transaction' %}"
                     hx-push-url="true"
                     hx-target="#transaction-block"
@@ -154,6 +160,11 @@
     </div>
 </div>
 
+
+<dialog id="daisy_modal" class="modal">
+    <div class="modal-box" id="htmx_modal">
+    </div>
+</dialog>
 
 <span id="spinner" class="loading loading-spinner loading-lg htmx-indicator">
 

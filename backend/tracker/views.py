@@ -72,6 +72,16 @@ def create_transaction(request: HttpRequest):
 
 
 @login_required
+def create_transaction_v2(request: HttpRequest) -> HttpResponse:
+    context = {
+        'form': TransactionForm()
+    }
+    resposne = render(request, 'tracker/partials/new-item.html', context)
+    return resposne
+
+
+
+@login_required
 def update_transaction(request: HttpRequest, pk: int):
     transaction = get_object_or_404(Transaction, pk=pk, user=request.user)
     if request.method == "POST":
