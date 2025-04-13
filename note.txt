@@ -70,6 +70,12 @@ everything seems to be ok, looked at the database, amount field for the new reco
 the filters work as well.
 committing...
 
+problem #02: only one decimal place is showing, which is incorrect.
+Attemtping to move on to version 2, by creating our own EncryptedDecimalField
+result: works ok (older records not showing decimal places at all, they are removed from database as well..)
+But they are still Decimal() objects.
+I was able to view the decimal points in templates, using a template filter.
+
 
 
 we can also add rest api

@@ -86,7 +86,7 @@
                             <td>{{ transaction.date }}</td>
                             <td>{{ transaction.category }}</td>
                             <td>{{ transaction.type }}</td>
-                            <td>{{ transaction.amount }}</td>
+                            <td>{{ transaction.amount|floatformat:2 }}</td>
                             <td class="flex items-center">
                                 <a hx-get="{% url 'tracker:update-transaction' transaction.pk %}"
                                     hx-push-url="true"

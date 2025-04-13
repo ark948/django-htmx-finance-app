@@ -7,6 +7,11 @@ from encrypted_fields.fields import EncryptedFloatField
 
 from .managers import TransactionQuerySet
 
+
+class EncryptedDecimalField(EncryptedFieldMixin, models.DecimalField):
+    pass
+
+
 class User(AbstractUser):
     pass
 
@@ -30,7 +35,7 @@ class Transaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     type = models.CharField(max_length=7, choices=TRANSACTION_TYPE_CHOICES)
-    amount = EncryptedFloatField()
+    amount = EncryptedDecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
 
     # custom manager
