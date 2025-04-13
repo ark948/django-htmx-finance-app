@@ -1,0 +1,1 @@
+Based entirely on [Django-HTMX-Finance-App] from bugbytes-io(https://github.com/bugbytes-io/Django-HTMX-Finance-App).
