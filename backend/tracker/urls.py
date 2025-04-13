@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 
@@ -14,5 +14,6 @@ urlpatterns = [
     path('transactions/create', views.create_transaction, name='create-transaction'),
     path("transactions/", views.transactions_list, name='transactions-list'),
     path('get-transactions/', views.get_transactions, name='get-transactions'),
+    path('transactions/api/', include('tracker.api.urls')),
     path("", views.index, name='index'),
 ]
