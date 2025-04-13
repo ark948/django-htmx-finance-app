@@ -40,3 +40,36 @@ pagination + infinite scroll process breakdown:
 
 plotly is based in plotly.js (a javascript framework).
 it must be added to project using CDN or locally.
+
+
+
+Proposal to encrypt transactions:
+
+Right now everything in database about transaction table is plain visible.
+This may be a security concern.
+
+Feature to implement:
+
+The amount field of the Transaction table must be encrypted (at least in the database)
+Attemtping to try "django-fernet-encrypted-fields" package:
+Installation: pip install django-fernet-encrypted-fields
+set random salt key in settings.py (i will use secrets module to produce a random string) (this also must be moved to .env file probably):
+> import secrets
+> random_string = secrets.token_hex(16)
+in models.py, replace the amount with EncryptedTextField from this package (EncryptedFloatField may be better for amount field)
+make migrations, run them (database might throw errors because of existing records in db)
+
+NOTE:
+in version 1, we'll just try EncryptedFloatField
+however it is recommended that for financial values we use decimal, and since this package does not have encrypted decimal field...
+we'll try to make our own using EncryptedMixinField in version 2
+problem #01 during version 1: EncryptedFloatField does not have max_digits or decimal_places arguments
+migration was made and ran with no problem so far.
+result of version 1:
+everything seems to be ok, looked at the database, amount field for the new records are actually encrypted.
+the filters work as well.
+committing...
+
+
+
+we can also add rest api
